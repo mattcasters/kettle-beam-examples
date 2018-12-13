@@ -51,7 +51,7 @@
       </child>
       <child>
          <id>tempLocation</id>
-         <value>/tmp/</value>
+         <value>${PENTAHO_METASTORE_FOLDER}/tmp</value>
          <type>String</type>
       </child>
       <child>
@@ -106,7 +106,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>/home/matt/parking/customers*-noheader-1k.txt</value>
+                     <value>${PENTAHO_METASTORE_FOLDER}/input/customers*-noheader-1k.txt</value>
                      <type>String</type>
                   </child>
                </children>
@@ -123,7 +123,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>/home/matt/parking/state-data.txt</value>
+                     <value>${PENTAHO_METASTORE_FOLDER}/input/state-data.txt</value>
                      <type>String</type>
                   </child>
                </children>
@@ -140,7 +140,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>/tmp/customers/output</value>
+                     <value>${PENTAHO_METASTORE_FOLDER}/output</value>
                      <type>String</type>
                   </child>
                </children>
