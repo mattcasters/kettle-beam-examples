@@ -9,8 +9,8 @@ Example transformations for the Kettle Beam project
 
 ## Optional
 
-* The kettle-environment plugin
-* The GitSpoon plugin 
+* The kettle-environment plugin (Use the variables below instead)
+* The GitSpoon plugin (use git commandline instead)
 
 ## Configure
 
@@ -18,9 +18,9 @@ If the this folder is located in ```<SAMPLES>```
 
 Create a Kettle Environment with the following minimal settings:
 
-* Metastore base folder set to ```<SAMPLES>``` or set PENTAHO_METASTORE_FOLDER
-* Unit tests base path set to ```<SAMPLES>``` or set UNIT_TESTS_BASE_PATH
-* Data Sets CSV folder set to ```<SAMPLES>/datasets``` or set DATASETS_BASE_PATH
+* Metastore base folder set to ```<SAMPLES>``` or set ```PENTAHO_METASTORE_FOLDER```
+* Unit tests base path set to ```<SAMPLES>``` or set ```UNIT_TESTS_BASE_PATH```
+* Data Sets CSV folder set to ```<SAMPLES>/datasets``` or set ```DATASETS_BASE_PATH```
 
 ## Run all tests
 
