@@ -101,7 +101,7 @@
       </child>
       <child>
          <id>pluginsToStage</id>
-         <value></value>
+         <value>kettle-json-plugin</value>
          <type>String</type>
       </child>
       <child>

@@ -437,9 +437,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>slave2</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8301</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -450,9 +450,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
+        <name>slave1</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8300</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -509,6 +509,7 @@
     </partitioning>
     <input_location>${DATA_INPUT}</input_location>
     <file_description_name>Customers</file_description_name>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -517,7 +518,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
+      <xloc>208</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -550,6 +551,7 @@
         <type>Integer</type>
       </value>
     </lookup>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -558,7 +560,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>448</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -588,6 +590,7 @@
         <valuefield />
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -596,7 +599,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>336</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -617,6 +620,7 @@
     <file_prefix>stream-lookup</file_prefix>
     <file_suffix>.csv</file_suffix>
     <windowed>N</windowed>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -625,7 +629,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>672</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
@@ -635,4 +639,25 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes>
+    <group>
+      <name>debug_plugin</name>
+      <attribute>
+        <key>Stream lookup : start_row</key>
+        <value>5</value>
+      </attribute>
+      <attribute>
+        <key>Stream lookup : log_level</key>
+        <value>Debug</value>
+      </attribute>
+      <attribute>
+        <key>Stream lookup : end_row</key>
+        <value>10</value>
+      </attribute>
+      <attribute>
+        <key>Stream lookup : condition</key>
+        <value>PGNvbmRpdGlvbj4KIDxuZWdhdGVkPk48L25lZ2F0ZWQ+CiA8bGVmdHZhbHVlLz4KIDxmdW5jdGlvbj49PC9mdW5jdGlvbj4KIDxyaWdodHZhbHVlLz4KIDwvY29uZGl0aW9uPgo=</value>
+      </attribute>
+    </group>
+  </attributes>
 </transformation>

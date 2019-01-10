@@ -504,6 +504,7 @@
     </partitioning>
     <input_location>${DATA_INPUT}</input_location>
     <file_description_name>Customers</file_description_name>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -547,7 +548,20 @@
         <type>SUM</type>
         <valuefield />
       </field>
+      <field>
+        <aggregate>minLastName</aggregate>
+        <subject>Last name</subject>
+        <type>MIN</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>maxLastName</aggregate>
+        <subject>Last name</subject>
+        <type>MAX</type>
+        <valuefield />
+      </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -587,6 +601,7 @@
         <remove_special_characters>none</remove_special_characters>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -616,6 +631,7 @@
     <file_prefix>grouped-by-state</file_prefix>
     <file_suffix>.csv</file_suffix>
     <windowed>N</windowed>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -634,4 +650,5 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes />
 </transformation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-type>
+   <name>Beam Run Configuration</name>
+   <description>Defines an Apache Beam Run configuration</description>
+</data-type>

@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>Kettle Beam Examples</id>
+   <id>GCP Dataflow</id>
    <value></value>
    <type>String</type>
    <children>
       <child>
          <id>name</id>
-         <value>Kettle Beam Examples</value>
+         <value>GCP Dataflow</value>
          <type>String</type>
       </child>
       <child>
          <id>description</id>
-         <value>A collection of example for the Apache Beam integration with Kettle</value>
+         <value>Execute on Apache Beam : Dataflow runner </value>
          <type>String</type>
       </child>
       <child>
-         <id>type</id>
-         <value>Git</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>directory</id>
-         <value>${ENVIRONMENT_HOME}</value>
+         <id>beamJobConfig</id>
+         <value>Dataflow</value>
          <type>String</type>
       </child>
    </children>
-   <name>Kettle Beam Examples</name>
+   <name>GCP Dataflow</name>
    <security>
       <owner/>
       <owner-permissions-list/>

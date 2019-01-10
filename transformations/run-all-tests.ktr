@@ -437,9 +437,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>slave2</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8301</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -450,9 +450,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
+        <name>slave1</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8300</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -492,6 +492,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
+    <test_name_input_field />
     <type_to_execute>UNIT_TEST</type_to_execute>
     <trans_name_field>transformation</trans_name_field>
     <unit_test_name_field>unittest</unit_test_name_field>
@@ -499,6 +500,7 @@
     <step_name_field>step</step_name_field>
     <error_field>error</error_field>
     <comment_field>comment</comment_field>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -523,6 +525,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -541,4 +544,5 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes />
 </transformation>

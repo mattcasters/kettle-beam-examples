@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>complex</name>
+    <name>pubsub-subscribe</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -467,9 +466,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/12/09 00:47:27.472</created_date>
+    <created_date>2019/01/08 01:23:16.487</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/12/09 00:47:27.472</modified_date>
+    <modified_date>2019/01/08 01:23:16.487</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -477,109 +476,29 @@
   </notepads>
   <order>
     <hop>
-      <from>State data</from>
-      <to>uppercase state</to>
+      <from>remove json</from>
+      <to>Window data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>uppercase state</from>
-      <to>Merge join</to>
+      <from>Window data</from>
+      <to>pubsub-subscribe</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Beam GCP Pub/Sub : Subscribe</from>
+      <to>Parse json</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Customer data</from>
-      <to>Merge join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>countPerState</from>
-      <to>SLU nrPerState</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join</from>
-      <to>SLU nrPerState</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Customer data</from>
-      <to>countPerState</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>name&lt;n</from>
-      <to>Label : A-M</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>name&lt;n</from>
-      <to>Label : N-Z</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SLU nrPerState</from>
-      <to>name&lt;n</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CA</from>
-      <to>Collect</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Default</from>
-      <to>Collect</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FL</from>
-      <to>Collect</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>NY</from>
-      <to>Collect</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>CA</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>Default</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>FL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>NY</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Label : A-M</from>
-      <to>Switch / case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Label : N-Z</from>
-      <to>Switch / case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Collect</from>
-      <to>complex</to>
+      <from>Parse json</from>
+      <to>remove json</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>CA</name>
-    <type>Constant</type>
+    <name>Beam GCP Pub/Sub : Subscribe</name>
+    <type>BeamSubscribe</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -588,20 +507,10 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <name>Comment</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Some comment about California</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+    <subscription>projects/kettledataflow/subscriptions/kettle-test</subscription>
+    <topic />
+    <message_type>String</message_type>
+    <message_field>json</message_field>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -611,144 +520,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Collect</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Customer data</name>
-    <type>BeamInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <input_location>${DATA_INPUT}</input_location>
-    <file_description_name>Customers</file_description_name>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Default</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>Comment</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>no comment.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FL</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>Comment</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Some remark on Floridians</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
+      <xloc>304</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Label : A-M</name>
-    <type>Constant</type>
+    <name>Parse json</name>
+    <type>JsonInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -757,174 +536,77 @@
       <method>none</method>
       <schema_name />
     </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field />
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
       <field>
-        <name>label</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>A-M</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Label : N-Z</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>label</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N-Z</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge join</name>
-    <type>MergeJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <join_type>LEFT OUTER</join_type>
-    <step1>Customer data</step1>
-    <step2>uppercase state</step2>
-    <keys_1>
-      <key>state</key>
-    </keys_1>
-    <keys_2>
-      <key>state</key>
-    </keys_2>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>NY</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>Comment</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>New York rocks!</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SLU nrPerState</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>countPerState</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>N</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>stateCode</name>
-        <field>stateCode</field>
-      </key>
-      <value>
-        <name>countPerState</name>
-        <rename>nrPerState</rename>
-        <default />
+        <name>id</name>
+        <path>id</path>
         <type>Integer</type>
-      </value>
-    </lookup>
+        <format>#</format>
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>firstName</name>
+        <path>firstName</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>lastName</name>
+        <path>firstName</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>json</valueField>
+    <shortFileFieldName />
+    <pathFieldName />
+    <hiddenFieldName />
+    <lastModificationTimeFieldName />
+    <uriNameFieldName />
+    <rootUriNameFieldName />
+    <extensionFieldName />
+    <sizeFieldName />
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -934,14 +616,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>160</yloc>
+      <xloc>496</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>State data</name>
-    <type>BeamInput</type>
+    <name>Window data</name>
+    <type>BeamWindow</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -950,54 +632,9 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <input_location>${STATE_INPUT}</input_location>
-    <file_description_name>State population data</file_description_name>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Switch / case</name>
-    <type>SwitchCase</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fieldname>stateCode</fieldname>
-    <use_contains>N</use_contains>
-    <case_value_type>String</case_value_type>
-    <case_value_format />
-    <case_value_decimal />
-    <case_value_group />
-    <default_target_step>Default</default_target_step>
-    <cases>
-      <case>
-        <value>CA</value>
-        <target_step>CA</target_step>
-      </case>
-      <case>
-        <value>FL</value>
-        <target_step>FL</target_step>
-      </case>
-      <case>
-        <value>NY</value>
-        <target_step>NY</target_step>
-      </case>
-    </cases>
+    <window_type>Fixed</window_type>
+    <duration>60</duration>
+    <every />
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -1008,12 +645,12 @@
     </remotesteps>
     <GUI>
       <xloc>816</xloc>
-      <yloc>160</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>complex</name>
+    <name>pubsub-subscribe</name>
     <type>BeamOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -1025,9 +662,9 @@
     </partitioning>
     <output_location>${DATA_OUTPUT}</output_location>
     <file_description_name />
-    <file_prefix>complex</file_prefix>
+    <file_prefix>pubsub-subscribe</file_prefix>
     <file_suffix>.csv</file_suffix>
-    <windowed>N</windowed>
+    <windowed>Y</windowed>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -1037,14 +674,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1232</xloc>
-      <yloc>160</yloc>
+      <xloc>1120</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>countPerState</name>
-    <type>MemoryGroupBy</type>
+    <name>remove json</name>
+    <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -1053,19 +690,11 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>stateCode</name>
-      </field>
-    </group>
     <fields>
-      <field>
-        <aggregate>countPerState</aggregate>
-        <subject>id</subject>
-        <type>COUNT_ALL</type>
-        <valuefield />
-      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>json</name>
+      </remove>
     </fields>
     <attributes />
     <cluster_schema />
@@ -1076,92 +705,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>name&lt;n</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>Label : A-M</send_true_to>
-    <send_false_to>Label : N-Z</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>Last name</leftvalue>
-        <function>&lt;</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text>n</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask />
-        </value>
-      </condition>
-    </compare>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>uppercase state</name>
-    <type>StringOperations</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>state</in_stream_name>
-        <out_stream_name />
-        <trim_type>none</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char />
-        <pad_len />
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>288</yloc>
+      <xloc>656</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

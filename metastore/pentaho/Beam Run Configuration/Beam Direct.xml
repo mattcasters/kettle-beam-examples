@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>Beam</id>
+   <id>Beam Direct</id>
    <value></value>
    <type>String</type>
    <children>
       <child>
-         <id>database_name</id>
-         <value></value>
+         <id>name</id>
+         <value>Beam Direct</value>
          <type>String</type>
       </child>
       <child>
@@ -15,22 +15,12 @@
          <type>String</type>
       </child>
       <child>
-         <id>group_type</id>
-         <value>CSV</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>schema_name</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>folderName</id>
-         <value>${DATASETS_BASE_PATH}</value>
+         <id>beamJobConfig</id>
+         <value>Direct</value>
          <type>String</type>
       </child>
    </children>
-   <name>Beam</name>
+   <name>Beam Direct</name>
    <security>
       <owner/>
       <owner-permissions-list/>
