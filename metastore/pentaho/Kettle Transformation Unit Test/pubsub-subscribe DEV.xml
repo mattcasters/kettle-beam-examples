@@ -101,8 +101,27 @@
       </child>
       <child>
          <id>trans_test_tweaks</id>
-         <value></value>
+         <value>org.pentaho.di.dataset.TransUnitTestTweak</value>
          <type>String</type>
+         <children>
+            <child>
+               <id>0</id>
+               <value></value>
+               <type>String</type>
+               <children>
+                  <child>
+                     <id>stepName</id>
+                     <value>pubsub-subscribe</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>tweak</id>
+                     <value>REMOVE_STEP</value>
+                     <type>String</type>
+                  </child>
+               </children>
+            </child>
+         </children>
       </child>
       <child>
          <id>persist_filename</id>

@@ -476,11 +476,6 @@
   </notepads>
   <order>
     <hop>
-      <from>Customer data</from>
-      <to>Rename fields</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Rename fields</from>
       <to>json</to>
       <enabled>Y</enabled>
@@ -494,6 +489,16 @@
       <from>json only</from>
       <to>Beam GCP Pub/Sub : Publish</to>
       <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Customer data</from>
+      <to>Beam Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Beam Timestamp</from>
+      <to>Rename fields</to>
+      <enabled>Y</enabled>
     </hop>
   </order>
   <step>
@@ -519,7 +524,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
+      <xloc>1040</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Beam Timestamp</name>
+    <type>BeamTimestamp</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_name />
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -625,7 +656,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
+      <xloc>528</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -677,7 +708,7 @@ var json = JSON.stringify(j);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>656</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -708,7 +739,7 @@ var json = JSON.stringify(j);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>800</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
