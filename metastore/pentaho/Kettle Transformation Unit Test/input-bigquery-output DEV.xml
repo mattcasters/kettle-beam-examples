@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>pubsub-publish DEV</id>
+   <id>input-bigquery-output DEV</id>
    <value></value>
    <type>String</type>
    <children>
@@ -41,7 +41,7 @@
       </child>
       <child>
          <id>transformation_filename</id>
-         <value>./transformations/pubsub-publish.ktr</value>
+         <value>./transformations/input-bigquery-output.ktr</value>
          <type>String</type>
       </child>
       <child>
@@ -269,27 +269,8 @@
       </child>
       <child>
          <id>trans_test_tweaks</id>
-         <value>org.pentaho.di.dataset.TransUnitTestTweak</value>
+         <value></value>
          <type>String</type>
-         <children>
-            <child>
-               <id>0</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>stepName</id>
-                     <value>Beam GCP Pub/Sub : Publish</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>tweak</id>
-                     <value>REMOVE_STEP</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-         </children>
       </child>
       <child>
          <id>transformation_rep_path</id>
@@ -297,7 +278,7 @@
          <type>String</type>
       </child>
    </children>
-   <name>pubsub-publish DEV</name>
+   <name>input-bigquery-output DEV</name>
    <security>
       <owner/>
       <owner-permissions-list/>

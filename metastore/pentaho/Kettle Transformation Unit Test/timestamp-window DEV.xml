@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>pubsub-publish DEV</id>
+   <id>timestamp-window DEV</id>
    <value></value>
    <type>String</type>
    <children>
+      <child>
+         <id>variableValues</id>
+         <value></value>
+         <type>String</type>
+      </child>
       <child>
          <id>database_replacements</id>
          <value></value>
@@ -15,33 +20,8 @@
          <type>String</type>
       </child>
       <child>
-         <id>autoOpening</id>
-         <value>Y</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>description</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>persist_filename</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>test_type</id>
-         <value>DEVELOPMENT</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>variableValues</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
          <id>transformation_filename</id>
-         <value>./transformations/pubsub-publish.ktr</value>
+         <value>./transformations/timestamp-window.ktr</value>
          <type>String</type>
       </child>
       <child>
@@ -268,36 +248,32 @@
          </children>
       </child>
       <child>
-         <id>trans_test_tweaks</id>
-         <value>org.pentaho.di.dataset.TransUnitTestTweak</value>
+         <id>description</id>
+         <value></value>
          <type>String</type>
-         <children>
-            <child>
-               <id>0</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>stepName</id>
-                     <value>Beam GCP Pub/Sub : Publish</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>tweak</id>
-                     <value>REMOVE_STEP</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-         </children>
+      </child>
+      <child>
+         <id>trans_test_tweaks</id>
+         <value></value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>persist_filename</id>
+         <value></value>
+         <type>String</type>
       </child>
       <child>
          <id>transformation_rep_path</id>
          <value></value>
          <type>String</type>
       </child>
+      <child>
+         <id>test_type</id>
+         <value>DEVELOPMENT</value>
+         <type>String</type>
+      </child>
    </children>
-   <name>pubsub-publish DEV</name>
+   <name>timestamp-window DEV</name>
    <security>
       <owner/>
       <owner-permissions-list/>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>pubsub-publish</name>
+    <name>bigquery-input-output</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -466,9 +467,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/01/07 23:49:23.364</created_date>
+    <created_date>2019/01/12 12:55:23.052</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/07 23:49:23.364</modified_date>
+    <modified_date>2019/01/12 12:55:23.052</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -476,34 +477,14 @@
   </notepads>
   <order>
     <hop>
-      <from>Rename fields</from>
-      <to>json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>json</from>
-      <to>json only</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>json only</from>
-      <to>Beam GCP Pub/Sub : Publish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Customer data</from>
-      <to>Beam Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Beam Timestamp</from>
-      <to>Rename fields</to>
+      <from>Beam BigQuery Input</from>
+      <to>bigquery-input-output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Beam GCP Pub/Sub : Publish</name>
-    <type>BeamPublish</type>
+    <name>Beam BigQuery Input</name>
+    <type>BeamBQInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -512,191 +493,60 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <topic>projects/kettledataflow/topics/kettle-topic</topic>
-    <message_type>String</message_type>
-    <message_field>json</message_field>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1040</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Beam Timestamp</name>
-    <type>BeamTimestamp</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_name />
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Customer data</name>
-    <type>BeamInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <input_location>${DATA_INPUT}</input_location>
-    <file_description_name>Customers</file_description_name>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Rename fields</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>Last name</name>
-        <rename>lastName</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask />
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale />
-        <date_format_timezone />
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding />
-        <decimal_symbol />
-        <grouping_symbol />
-        <currency_symbol />
-        <storage_type />
-      </meta>
-      <meta>
-        <name>First name</name>
-        <rename>firstName</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask />
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale />
-        <date_format_timezone />
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding />
-        <decimal_symbol />
-        <grouping_symbol />
-        <currency_symbol />
-        <storage_type />
-      </meta>
-      <meta>
-        <name>cust_zip_code</name>
-        <rename>zipCode</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask />
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale />
-        <date_format_timezone />
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding />
-        <decimal_symbol />
-        <grouping_symbol />
-        <currency_symbol />
-        <storage_type />
-      </meta>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>json</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>
-var j = {};
-
-j.id = id;
-j.firstName = firstName;
-j.lastName = lastName;
-
-var json = JSON.stringify(j);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
+    <project_id>kettledataflow</project_id>
+    <dataset_id>kettleBeamDataset</dataset_id>
+    <table_id>customers</table_id>
+    <query />
     <fields>
       <field>
-        <name>json</name>
-        <rename>json</rename>
+        <name>id</name>
+        <new_name />
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>lastName</name>
+        <new_name />
         <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+      </field>
+      <field>
+        <name>firstName</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>zipCode</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>city</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>birthdate</name>
+        <new_name />
+        <type>Date</type>
+      </field>
+      <field>
+        <name>street</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>housenr</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>stateCode</name>
+        <new_name />
+        <type>String</type>
+      </field>
+      <field>
+        <name>state</name>
+        <new_name />
+        <type>String</type>
       </field>
     </fields>
     <attributes />
@@ -708,14 +558,14 @@ var json = JSON.stringify(j);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>128</yloc>
+      <xloc>224</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>json only</name>
-    <type>SelectValues</type>
+    <name>bigquery-input-output</name>
+    <type>BeamOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -724,12 +574,11 @@ var json = JSON.stringify(j);
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <name>json</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <output_location>${DATA_OUTPUT}</output_location>
+    <file_description_name />
+    <file_prefix>bigquery-input-output</file_prefix>
+    <file_suffix>.csv</file_suffix>
+    <windowed>N</windowed>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -739,8 +588,8 @@ var json = JSON.stringify(j);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>128</yloc>
+      <xloc>592</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

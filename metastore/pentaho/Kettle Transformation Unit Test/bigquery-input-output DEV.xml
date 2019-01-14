@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>pubsub-subscribe DEV</id>
+   <id>bigquery-input-output DEV</id>
    <value></value>
    <type>String</type>
    <children>
@@ -41,7 +41,7 @@
       </child>
       <child>
          <id>transformation_filename</id>
-         <value>./transformations/pubsub-subscribe.ktr</value>
+         <value>./transformations/bigquery-input-output.ktr</value>
          <type>String</type>
       </child>
       <child>
@@ -76,12 +76,46 @@
                            <children>
                               <child>
                                  <id>data_set_field</id>
-                                 <value>json</value>
+                                 <value>id</value>
                                  <type>String</type>
                               </child>
                               <child>
                                  <id>step_field</id>
-                                 <value>json</value>
+                                 <value>id</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>1</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>Last name</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>firstName</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>2</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>First name</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>lastName</value>
                                  <type>String</type>
                               </child>
                            </children>
@@ -95,19 +129,19 @@
                      <children>
                         <child>
                            <id>0</id>
-                           <value>json</value>
+                           <value>id</value>
                            <type>String</type>
                         </child>
                      </children>
                   </child>
                   <child>
                      <id>step_name</id>
-                     <value>Beam GCP Pub/Sub : Subscribe</value>
+                     <value>Beam BigQuery Input</value>
                      <type>String</type>
                   </child>
                   <child>
                      <id>data_set_name</id>
-                     <value>json-pubsub-messages</value>
+                     <value>customers-input</value>
                      <type>String</type>
                   </child>
                </children>
@@ -116,27 +150,8 @@
       </child>
       <child>
          <id>trans_test_tweaks</id>
-         <value>org.pentaho.di.dataset.TransUnitTestTweak</value>
+         <value></value>
          <type>String</type>
-         <children>
-            <child>
-               <id>0</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>stepName</id>
-                     <value>pubsub-subscribe</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>tweak</id>
-                     <value>REMOVE_STEP</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-         </children>
       </child>
       <child>
          <id>transformation_rep_path</id>
@@ -144,7 +159,7 @@
          <type>String</type>
       </child>
    </children>
-   <name>pubsub-subscribe DEV</name>
+   <name>bigquery-input-output DEV</name>
    <security>
       <owner/>
       <owner-permissions-list/>

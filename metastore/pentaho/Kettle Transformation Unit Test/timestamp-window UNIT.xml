@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>pubsub-publish DEV</id>
+   <id>timestamp-window UNIT</id>
    <value></value>
    <type>String</type>
    <children>
+      <child>
+         <id>variableValues</id>
+         <value></value>
+         <type>String</type>
+      </child>
       <child>
          <id>database_replacements</id>
          <value></value>
@@ -15,33 +20,8 @@
          <type>String</type>
       </child>
       <child>
-         <id>autoOpening</id>
-         <value>Y</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>description</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>persist_filename</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>test_type</id>
-         <value>DEVELOPMENT</value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>variableValues</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
          <id>transformation_filename</id>
-         <value>./transformations/pubsub-publish.ktr</value>
+         <value>./transformations/timestamp-window.ktr</value>
          <type>String</type>
       </child>
       <child>
@@ -51,8 +31,216 @@
       </child>
       <child>
          <id>golden_data_sets</id>
-         <value></value>
+         <value>org.pentaho.di.dataset.TransUnitTestSetLocation</value>
          <type>String</type>
+         <children>
+            <child>
+               <id>0</id>
+               <value></value>
+               <type>String</type>
+               <children>
+                  <child>
+                     <id>field_mappings</id>
+                     <value>org.pentaho.di.dataset.TransUnitTestFieldMapping</value>
+                     <type>String</type>
+                     <children>
+                        <child>
+                           <id>0</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>id</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>id</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>1</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>Last name</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>Last name</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>2</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>First name</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>First name</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>3</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>cust_zip_code</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>cust_zip_code</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>4</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>city</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>city</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>5</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>birthdate</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>birthdate</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>6</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>street</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>street</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>7</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>housenr</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>housenr</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>8</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>stateCode</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>stateCode</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                        <child>
+                           <id>9</id>
+                           <value></value>
+                           <type>String</type>
+                           <children>
+                              <child>
+                                 <id>data_set_field</id>
+                                 <value>state</value>
+                                 <type>String</type>
+                              </child>
+                              <child>
+                                 <id>step_field</id>
+                                 <value>state</value>
+                                 <type>String</type>
+                              </child>
+                           </children>
+                        </child>
+                     </children>
+                  </child>
+                  <child>
+                     <id>field_order</id>
+                     <value>java.lang.String</value>
+                     <type>String</type>
+                     <children>
+                        <child>
+                           <id>0</id>
+                           <value>id</value>
+                           <type>String</type>
+                        </child>
+                     </children>
+                  </child>
+                  <child>
+                     <id>step_name</id>
+                     <value>timestamp-window</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>data_set_name</id>
+                     <value>customers-input</value>
+                     <type>String</type>
+                  </child>
+               </children>
+            </child>
+         </children>
       </child>
       <child>
          <id>input_data_sets</id>
@@ -268,36 +456,32 @@
          </children>
       </child>
       <child>
-         <id>trans_test_tweaks</id>
-         <value>org.pentaho.di.dataset.TransUnitTestTweak</value>
+         <id>description</id>
+         <value></value>
          <type>String</type>
-         <children>
-            <child>
-               <id>0</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>stepName</id>
-                     <value>Beam GCP Pub/Sub : Publish</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>tweak</id>
-                     <value>REMOVE_STEP</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-         </children>
+      </child>
+      <child>
+         <id>trans_test_tweaks</id>
+         <value></value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>persist_filename</id>
+         <value></value>
+         <type>String</type>
       </child>
       <child>
          <id>transformation_rep_path</id>
          <value></value>
          <type>String</type>
       </child>
+      <child>
+         <id>test_type</id>
+         <value>UNIT_TEST</value>
+         <type>String</type>
+      </child>
    </children>
-   <name>pubsub-publish DEV</name>
+   <name>timestamp-window UNIT</name>
    <security>
       <owner/>
       <owner-permissions-list/>
