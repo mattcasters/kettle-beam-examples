@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>complex DEV</id>
+   <id>input-process-kafka-output DEV</id>
    <value></value>
    <type>String</type>
    <children>
@@ -31,7 +31,7 @@
       </child>
       <child>
          <id>test_type</id>
-         <value>NONE</value>
+         <value>DEVELOPMENT</value>
          <type>String</type>
       </child>
       <child>
@@ -41,7 +41,7 @@
       </child>
       <child>
          <id>transformation_filename</id>
-         <value>./transformations/complex.ktr</value>
+         <value>./transformations/input-process-kafka-output.ktr</value>
          <type>String</type>
       </child>
       <child>
@@ -248,11 +248,6 @@
                      <children>
                         <child>
                            <id>0</id>
-                           <value>state</value>
-                           <type>String</type>
-                        </child>
-                        <child>
-                           <id>1</id>
                            <value>id</value>
                            <type>String</type>
                         </child>
@@ -260,82 +255,12 @@
                   </child>
                   <child>
                      <id>step_name</id>
-                     <value>Customer data</value>
+                     <value>Customers</value>
                      <type>String</type>
                   </child>
                   <child>
                      <id>data_set_name</id>
                      <value>customers-input</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>1</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>field_mappings</id>
-                     <value>org.pentaho.di.dataset.TransUnitTestFieldMapping</value>
-                     <type>String</type>
-                     <children>
-                        <child>
-                           <id>0</id>
-                           <value></value>
-                           <type>String</type>
-                           <children>
-                              <child>
-                                 <id>data_set_field</id>
-                                 <value>State</value>
-                                 <type>String</type>
-                              </child>
-                              <child>
-                                 <id>step_field</id>
-                                 <value>state</value>
-                                 <type>String</type>
-                              </child>
-                           </children>
-                        </child>
-                        <child>
-                           <id>1</id>
-                           <value></value>
-                           <type>String</type>
-                           <children>
-                              <child>
-                                 <id>data_set_field</id>
-                                 <value>Population</value>
-                                 <type>String</type>
-                              </child>
-                              <child>
-                                 <id>step_field</id>
-                                 <value>population</value>
-                                 <type>String</type>
-                              </child>
-                           </children>
-                        </child>
-                     </children>
-                  </child>
-                  <child>
-                     <id>field_order</id>
-                     <value>java.lang.String</value>
-                     <type>String</type>
-                     <children>
-                        <child>
-                           <id>0</id>
-                           <value>State</value>
-                           <type>String</type>
-                        </child>
-                     </children>
-                  </child>
-                  <child>
-                     <id>step_name</id>
-                     <value>State data</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>data_set_name</id>
-                     <value>state-data-input</value>
                      <type>String</type>
                   </child>
                </children>
@@ -353,7 +278,7 @@
          <type>String</type>
       </child>
    </children>
-   <name>complex DEV</name>
+   <name>input-process-kafka-output DEV</name>
    <security>
       <owner/>
       <owner-permissions-list/>

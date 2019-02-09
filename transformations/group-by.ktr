@@ -424,6 +424,19 @@
     </partitionschemas>
     <slaveservers>
       <slaveserver>
+        <name>8888</name>
+        <hostname>localhost</hostname>
+        <port>8888</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
         <name>sandbox</name>
         <hostname>sandbox.kettle.be</hostname>
         <port>8080</port>

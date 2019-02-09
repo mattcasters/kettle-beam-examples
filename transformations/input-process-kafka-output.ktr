@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>pubsub-subscribe</name>
+    <name>input-process-kafka-output</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -424,10 +425,10 @@
     </partitionschemas>
     <slaveservers>
       <slaveserver>
-        <name>sandbox</name>
-        <hostname>sandbox.kettle.be</hostname>
-        <port>8080</port>
-        <webAppName>spoon</webAppName>
+        <name>8888</name>
+        <hostname>localhost</hostname>
+        <port>8888</port>
+        <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
         <proxy_hostname />
@@ -437,10 +438,10 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
-        <hostname>localhost</hostname>
-        <port>8301</port>
-        <webAppName />
+        <name>sandbox</name>
+        <hostname>sandbox.kettle.be</hostname>
+        <port>8080</port>
+        <webAppName>spoon</webAppName>
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
         <proxy_hostname />
@@ -462,13 +463,26 @@
         <master>N</master>
         <sslMode>N</sslMode>
       </slaveserver>
+      <slaveserver>
+        <name>slave2</name>
+        <hostname>localhost</hostname>
+        <port>8301</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/01/08 01:23:16.487</created_date>
+    <created_date>2018/11/29 13:30:22.901</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/08 01:23:16.487</modified_date>
+    <modified_date>2018/11/29 13:30:22.901</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -476,34 +490,44 @@
   </notepads>
   <order>
     <hop>
-      <from>remove json</from>
-      <to>Window data</to>
+      <from>Customers</from>
+      <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Window data</from>
-      <to>pubsub-subscribe</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Beam GCP Pub/Sub : Subscribe</from>
-      <to>Parse json</to>
+      <from>Dummy</from>
+      <to>Only CA</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Parse json</from>
-      <to>remove json</to>
+      <from>Uppercase State</from>
+      <to>Limit fields, re-order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Window data</from>
-      <to>Neo4J Output</to>
+      <from>Only CA</from>
+      <to>Uppercase State</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Limit fields, re-order</from>
+      <to>json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>json</from>
+      <to>Beam Kafka Produce</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>json</from>
+      <to>Kafka producer</to>
       <enabled>N</enabled>
     </hop>
   </order>
   <step>
-    <name>Beam GCP Pub/Sub : Subscribe</name>
-    <type>BeamSubscribe</type>
+    <name>Beam Kafka Produce</name>
+    <type>BeamKafkaProduce</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -512,9 +536,9 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <subscription>projects/kettledataflow/subscriptions/kettle-test</subscription>
-    <topic />
-    <message_type>String</message_type>
+    <bootstrap_servers>sandbox.kettle.be:9092</bootstrap_servers>
+    <topic>customers</topic>
+    <key_field>id</key_field>
     <message_field>json</message_field>
     <attributes />
     <cluster_schema />
@@ -525,14 +549,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>112</yloc>
+      <xloc>896</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Neo4J Output</name>
-    <type>Neo4JOutput</type>
+    <name>Customers</name>
+    <type>BeamInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -541,49 +565,8 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection />
-    <batch_size>1000</batch_size>
-    <key />
-    <create_indexes>Y</create_indexes>
-    <use_create>Y</use_create>
-    <only_create_relationships>N</only_create_relationships>
-    <returning_graph>N</returning_graph>
-    <return_graph_field>graph</return_graph_field>
-    <from>
-      <read_only_from_node>N</read_only_from_node>
-      <labels>
-        <label />
-        <value>Customer</value>
-      </labels>
-      <properties>
-        <property>
-          <name>id</name>
-          <value>id</value>
-          <type>Integer</type>
-          <primary>Y</primary>
-        </property>
-        <property>
-          <name>firstName</name>
-          <value>firstName</value>
-          <type>String</type>
-          <primary>N</primary>
-        </property>
-        <property>
-          <name>lastName</name>
-          <value>lastName</value>
-          <type>String</type>
-          <primary>N</primary>
-        </property>
-      </properties>
-    </from>
-    <to>
-      <read_only_to_node>N</read_only_to_node>
-      <labels />
-      <properties />
-    </to>
-    <relationship />
-    <relationship_value />
-    <relprops />
+    <input_location>${DATA_INPUT}</input_location>
+    <file_description_name>Customers</file_description_name>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -593,14 +576,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>208</yloc>
+      <xloc>224</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Parse json</name>
-    <type>JsonInput</type>
+    <name>Dummy</name>
+    <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -609,77 +592,6 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <include>N</include>
-    <include_field />
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field />
-    <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>id</name>
-        <path>id</path>
-        <type>Integer</type>
-        <format>#</format>
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>firstName</name>
-        <path>firstName</path>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>lastName</name>
-        <path>firstName</path>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>json</valueField>
-    <shortFileFieldName />
-    <pathFieldName />
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName />
-    <sizeFieldName />
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -689,71 +601,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>112</yloc>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Window data</name>
-    <type>BeamWindow</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <window_type>Fixed</window_type>
-    <duration>60</duration>
-    <every />
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>pubsub-subscribe</name>
-    <type>BeamOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <output_location>${DATA_OUTPUT}</output_location>
-    <file_description_name />
-    <file_prefix>pubsub-subscribe</file_prefix>
-    <file_suffix>.csv</file_suffix>
-    <windowed>Y</windowed>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>992</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>remove json</name>
+    <name>Limit fields, re-order</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -764,10 +618,22 @@
       <schema_name />
     </partitioning>
     <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>First name</name>
+      </field>
+      <field>
+        <name>Last name</name>
+      </field>
+      <field>
+        <name>city</name>
+      </field>
+      <field>
+        <name>state</name>
+      </field>
       <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>json</name>
-      </remove>
     </fields>
     <attributes />
     <cluster_schema />
@@ -778,8 +644,198 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>112</yloc>
+      <xloc>704</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Only CA</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to />
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>stateCode</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name />
+          <type>String</type>
+          <text>CA</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Uppercase State</name>
+    <type>StringOperations</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>state</in_stream_name>
+        <out_stream_name />
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char />
+        <pad_len />
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>json</name>
+    <type>JsonOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>customers</jsonBloc>
+    <nrRowsInBloc>1</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name />
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>id</name>
+        <element>id</element>
+      </field>
+      <field>
+        <name>First name</name>
+        <element>First name</element>
+      </field>
+      <field>
+        <name>Last name</name>
+        <element>Last name</element>
+      </field>
+      <field>
+        <name>city</name>
+        <element>city</element>
+      </field>
+      <field>
+        <name>state</name>
+        <element>state</element>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Kafka producer</name>
+    <type>KafkaProducerOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connectionType>DIRECT</connectionType>
+    <directBootstrapServers>sandbox.kettle.be:9092</directBootstrapServers>
+    <clusterName />
+    <topic>customers</topic>
+    <clientId>kettle</clientId>
+    <keyField>id</keyField>
+    <messageField>json</messageField>
+    <advancedConfig>
+      <option property="compression.type" value="none" />
+      <option property="ssl.key.password" value="" />
+      <option property="ssl.keystore.location" value="" />
+      <option property="ssl.keystore.password" value="" />
+      <option property="ssl.truststore.location" value="" />
+      <option property="ssl.truststore.password" value="" />
+    </advancedConfig>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

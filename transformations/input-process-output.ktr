@@ -425,6 +425,19 @@
     </partitionschemas>
     <slaveservers>
       <slaveserver>
+        <name>8888</name>
+        <hostname>localhost</hostname>
+        <port>8888</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
         <name>sandbox</name>
         <hostname>sandbox.kettle.be</hostname>
         <port>8080</port>
@@ -515,6 +528,7 @@
     </partitioning>
     <input_location>${DATA_INPUT}</input_location>
     <file_description_name>Customers</file_description_name>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -523,8 +537,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>112</yloc>
+      <xloc>224</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -539,6 +553,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -547,8 +562,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>112</yloc>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -581,6 +596,7 @@
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -589,8 +605,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>112</yloc>
+      <xloc>704</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -624,6 +640,7 @@
         </value>
       </condition>
     </compare>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -632,8 +649,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>112</yloc>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -663,6 +680,7 @@
         <remove_special_characters>none</remove_special_characters>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -671,8 +689,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>112</yloc>
+      <xloc>496</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -692,6 +710,7 @@
     <file_prefix>input-process-output</file_prefix>
     <file_suffix>.csv</file_suffix>
     <windowed>N</windowed>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -700,8 +719,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
-      <yloc>112</yloc>
+      <xloc>704</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -710,4 +729,5 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes />
 </transformation>

@@ -21,7 +21,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/bigquery-input-output.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/input-process-output.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -53,7 +53,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/input-bigquery-output.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/filter-split-combine.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -85,39 +85,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/pubsub-subscribe.ktr</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Trans</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>3</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/pubsub-publish.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/input-process-kafka-output.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -161,7 +129,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/bigquery-input-output.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-beam-examples/transformations/input-process-output.ktr</value>
                      <type>String</type>
                   </child>
                   <child>

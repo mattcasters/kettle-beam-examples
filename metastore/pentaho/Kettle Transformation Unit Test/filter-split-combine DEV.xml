@@ -5,17 +5,37 @@
    <type>String</type>
    <children>
       <child>
-         <id>variableValues</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
          <id>database_replacements</id>
          <value></value>
          <type>String</type>
       </child>
       <child>
          <id>transformation_rep_object_id</id>
+         <value></value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>autoOpening</id>
+         <value>Y</value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>description</id>
+         <value></value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>persist_filename</id>
+         <value></value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>test_type</id>
+         <value>DEVELOPMENT</value>
+         <type>String</type>
+      </child>
+      <child>
+         <id>variableValues</id>
          <value></value>
          <type>String</type>
       </child>
@@ -248,28 +268,13 @@
          </children>
       </child>
       <child>
-         <id>description</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
          <id>trans_test_tweaks</id>
-         <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>persist_filename</id>
          <value></value>
          <type>String</type>
       </child>
       <child>
          <id>transformation_rep_path</id>
          <value></value>
-         <type>String</type>
-      </child>
-      <child>
-         <id>test_type</id>
-         <value>DEVELOPMENT</value>
          <type>String</type>
       </child>
    </children>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>Spark HDP 3.0</id>
+   <id>Spark</id>
    <value></value>
    <type>String</type>
    <children>
@@ -80,8 +80,13 @@
          <type>String</type>
       </child>
       <child>
+         <id>sparkDeployFolder</id>
+         <value>/tmp/spark/</value>
+         <type>String</type>
+      </child>
+      <child>
          <id>sparkMaster</id>
-         <value>spark://sandbox-hdp.hortonworks.com:4040</value>
+         <value>spark://ec2-52-29-68-189.eu-central-1.compute.amazonaws.com:7077</value>
          <type>String</type>
       </child>
       <child>
@@ -101,12 +106,12 @@
       </child>
       <child>
          <id>pluginsToStage</id>
-         <value></value>
+         <value>kettle-beam</value>
          <type>String</type>
       </child>
       <child>
          <id>tempLocation</id>
-         <value>hdfs://sandbox-hdp.hortonworks.com/tmp/</value>
+         <value>hdfs:/tmp/</value>
          <type>String</type>
       </child>
       <child>
@@ -151,7 +156,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>gs://kettledataflow/input/customers-noheader-1M.txt</value>
+                     <value>hdfs:///input/customers-noheader-1M.txt</value>
                      <type>String</type>
                   </child>
                </children>
@@ -168,7 +173,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>gs://kettledataflow/input/state-data.txt</value>
+                     <value>hdfs:///input/state-data.txt</value>
                      <type>String</type>
                   </child>
                </children>
@@ -185,7 +190,7 @@
                   </child>
                   <child>
                      <id>value</id>
-                     <value>gs://kettledataflow/output/</value>
+                     <value>hdfs:///output/</value>
                      <type>String</type>
                   </child>
                </children>
@@ -198,7 +203,7 @@
          <type>String</type>
       </child>
    </children>
-   <name>Spark HDP 3.0</name>
+   <name>Spark</name>
    <security>
       <owner/>
       <owner-permissions-list/>

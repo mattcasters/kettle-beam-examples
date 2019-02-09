@@ -16,7 +16,7 @@
       </child>
       <child>
          <id>beamJobConfig</id>
-         <value>Spark HDP 3.0</value>
+         <value>Spark</value>
          <type>String</type>
       </child>
    </children>

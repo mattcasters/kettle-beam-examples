@@ -437,9 +437,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
+        <name>slave1</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8300</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -450,9 +450,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>slave2</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8301</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -480,7 +480,56 @@
       <to>preview</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Metastore Reader</from>
+      <to>Unit tests</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unit tests</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Run all UNIT tests</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Metastore Reader</name>
+    <type>MetastoreReader</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <store_name_field>storeName</store_name_field>
+    <namespace_field>namespace</namespace_field>
+    <element_type_field>elementType</element_type_field>
+    <element_name_field>element</element_name_field>
+    <attribute_depth_field>depth</attribute_depth_field>
+    <attribute_path_field>path</attribute_path_field>
+    <attribute_index_field>index</attribute_index_field>
+    <attribute_type_field>type</attribute_type_field>
+    <attribute_value_field>value</attribute_value_field>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Run all UNIT tests</name>
     <type>ExecuteTests</type>
@@ -492,7 +541,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <test_name_input_field />
+    <test_name_input_field>unitTestName</test_name_input_field>
     <type_to_execute>UNIT_TEST</type_to_execute>
     <trans_name_field>transformation</trans_name_field>
     <unit_test_name_field>unittest</unit_test_name_field>
@@ -509,7 +558,104 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
+      <xloc>688</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>element</name>
+        <rename>unitTestName</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unit tests</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to />
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>elementType</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Kettle Transformation Unit Test</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>depth</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>####0;-####0</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -534,7 +680,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>912</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
